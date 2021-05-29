@@ -12,8 +12,7 @@ from pytz import timezone
 
 
 PATH = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Risk of Rain 2\\Risk of Rain 2_Data\\RunReports\\History"
-IMG_PATH = "C:\\Users\\Parrish\\Desktop\\Metamorphasis\\RoR2Dash"
-
+IMG_PATH = os.getcwd()+"\\ror2-run-stats\images"
 
 def browse_files():
     filename = filedialog.askopenfilename(initialdir="/", title="Select a File", filetypes=(("Text files", "*.txt"), ("all files", ".")))
