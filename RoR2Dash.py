@@ -13,6 +13,9 @@ from pytz import timezone
 
 PATH = "C:\\Program Files (x86)\\Steam\\steamapps\\common\\Risk of Rain 2\\Risk of Rain 2_Data\\RunReports\\History"
 IMG_PATH = os.getcwd()+"\\ror2-run-stats\images"
+PURPLE = "#5500FF"
+LIGHT_PURPLE = "#B2ABF2"
+GREEN_GRAY = "#545E56"
 
 def browse_files():
     filename = filedialog.askopenfilename(initialdir="/", title="Select a File", filetypes=(("Text files", "*.txt"), ("all files", ".")))
@@ -94,19 +97,15 @@ def get_longest_time_alive(run_stats):
                     longest_time_alive = float(run[stat])
 
 
-    print(datetime.timedelta(seconds=longest_time_alive))
+    # formats string from timedelta "0:21:32.92393" and returns it as "0h 21m 32s"
+    time = datetime.timedelta(seconds=longest_time_alive)
+    time_split = str(time).split(":")
+    time_split.insert(2, time_split[-1][:2])
+    time_split.pop(3)
 
-    print(longest_time_alive)
-    # hour.minutes
-    print(longest_time_alive / 3600)
-    
-    # if longest_time_alive / 3600 >= 1:
-    #     return str(round(longest_time_alive/3600, 2))[:-3]+"h "+ str(longest_time_alive/3600*60)
+    return time_split[0]+"h "+time_split[1]+"m "+time_split[2]+"s"
 
 
-    # minutes.seconds
-    print(longest_time_alive / 3600 * 60)
-    return str(round(longest_time_alive / 60, 2))+""
 
 
 # Sort files in the ...\RunReports\History directory
@@ -141,7 +140,7 @@ left_frame = tk.Frame(root)
 left_frame.pack(side=tk.LEFT, fill=tk.Y)
 
 # Create a canvas
-my_canvas = tk.Canvas(left_frame, bg="gray")
+my_canvas = tk.Canvas(left_frame, bg=GREEN_GRAY)
 my_canvas.pack(side=tk.LEFT, fill=tk.Y)
 
 # Add a scrollbar to the canvas
@@ -179,39 +178,39 @@ for run in run_stats:
     run_dateandtime = time.strftime('%Y-%m-%d %H:%M:%S', time.localtime(modTimesinceEpoc))
 
     if class_body == "Bandit2Body":
-        tk.Button(second_frame, image=bandit_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg="gray").grid(row=idx, column=0, pady=10, padx=10)
+        tk.Button(second_frame, image=bandit_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg=GREEN_GRAY).grid(row=idx, column=0, pady=10, padx=10)
     elif class_body == "HuntressBody":
-        tk.Button(second_frame, image=huntress_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg="gray").grid(row=idx, column=0, pady=10, padx=10)
+        tk.Button(second_frame, image=huntress_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg=GREEN_GRAY).grid(row=idx, column=0, pady=10, padx=10)
     elif class_body == "CaptainBody":
-        tk.Button(second_frame, image=captain_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg="gray").grid(row=idx, column=0, pady=10, padx=10)
+        tk.Button(second_frame, image=captain_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg=GREEN_GRAY).grid(row=idx, column=0, pady=10, padx=10)
     elif class_body == "EngiBody":
-        tk.Button(second_frame, image=engineer_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg="gray").grid(row=idx, column=0, pady=10, padx=10)
+        tk.Button(second_frame, image=engineer_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg=GREEN_GRAY).grid(row=idx, column=0, pady=10, padx=10)
     elif class_body == "MercBody":
-        tk.Button(second_frame, image=mercenary_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg="gray").grid(row=idx, column=0, pady=10, padx=10)
+        tk.Button(second_frame, image=mercenary_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg=GREEN_GRAY).grid(row=idx, column=0, pady=10, padx=10)
     elif class_body == "MageBody":
-        tk.Button(second_frame, image=artificer_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg="gray").grid(row=idx, column=0, pady=10, padx=10)
+        tk.Button(second_frame, image=artificer_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg=GREEN_GRAY).grid(row=idx, column=0, pady=10, padx=10)
     elif class_body == "CommandoBody":
-        tk.Button(second_frame, image=commando_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg="gray").grid(row=idx, column=0, pady=10, padx=10)
+        tk.Button(second_frame, image=commando_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg=GREEN_GRAY).grid(row=idx, column=0, pady=10, padx=10)
     elif class_body == "TreebotBody":
-        tk.Button(second_frame, image=rex_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg="gray").grid(row=idx, column=0, pady=10, padx=10)
+        tk.Button(second_frame, image=rex_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg=GREEN_GRAY).grid(row=idx, column=0, pady=10, padx=10)
     elif class_body == "ToolbotBody":
-        tk.Button(second_frame, image=mult_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg="gray").grid(row=idx, column=0, pady=10, padx=10)
+        tk.Button(second_frame, image=mult_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg=GREEN_GRAY).grid(row=idx, column=0, pady=10, padx=10)
     elif class_body == "CrocoBody":
-        tk.Button(second_frame, image=acrid_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg="gray").grid(row=idx, column=0, pady=10, padx=10)
+        tk.Button(second_frame, image=acrid_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg=GREEN_GRAY).grid(row=idx, column=0, pady=10, padx=10)
     elif class_body == "LoaderBody":
-        tk.Button(second_frame, image=loader_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg="gray").grid(row=idx, column=0, pady=10, padx=10)
+        tk.Button(second_frame, image=loader_img, text=" "*50 + run_dateandtime, compound="left", command=test, bg=GREEN_GRAY).grid(row=idx, column=0, pady=10, padx=10)
 
     idx += 1
 
 
-Overallstats_label = tk.Label(root, text="Overall Stats", font=("Verdana", 50), bg="gray", fg="#5500FF").pack()
+Overallstats_label = tk.Label(root, text="Overall Stats", font=("Verdana", 50), bg="gray", fg=PURPLE).pack()
 
 total_kills = get_total_kills(run_stats)
-total_kills_label = tk.Label(root, text="Total Kills: "+str(total_kills))
+total_kills_label = tk.Label(root, text="Total Kills: "+str(total_kills), font=("Arial", 20), bg="gray", fg=LIGHT_PURPLE)
 total_kills_label.pack()
 
 longest_time_alive = get_longest_time_alive(run_stats)
-longest_time_alive_label = tk.Label(root, text="Longest Time Alive "+longest_time_alive[:2]+"m "+longest_time_alive[3:]+"s")
+longest_time_alive_label = tk.Label(root, text="Longest Time Alive "+longest_time_alive, font=("Arial", 24), bg="gray", fg=LIGHT_PURPLE)
 longest_time_alive_label.pack()
 
 # kills, labels = get_kills_against(run_stats)
